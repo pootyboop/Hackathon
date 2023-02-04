@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject stageLights;
 
     //prefabs
+    public ParticleSystem stepBurstWeak;
     public ParticleSystem stepBurstNormal;
 
 
@@ -116,6 +117,9 @@ public class PlayerController : MonoBehaviour
         ParticleSystem prefab;
         switch (strength)
         {
+            case stepStrength.WEAK:
+                prefab = stepBurstWeak;
+                break;
             default:
                 prefab = stepBurstNormal;
                 break;
