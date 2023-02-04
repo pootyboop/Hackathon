@@ -8,6 +8,8 @@ public class Footsteps : MonoBehaviour
     Vector3 lastPosition, currentPosition;
     const float maxStrength = 6.0f;
 
+
+
     private void FixedUpdate()
     {
         lastPosition = currentPosition;
