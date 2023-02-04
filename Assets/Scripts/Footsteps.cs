@@ -20,13 +20,16 @@ public class Footsteps : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        PlayerController.instance.Step(StepStrength(lastPosition, currentPosition), isRight, collision);
 
         //print("collision!");
 
+        /*
         if (collision.gameObject.CompareTag("Ground"))
         {
-            print(StepStrength(lastPosition, currentPosition));
+            //print(StepStrength(lastPosition, currentPosition));
         }
+        */
     }
 
 
