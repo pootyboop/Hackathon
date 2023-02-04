@@ -8,6 +8,31 @@ public class Footsteps : MonoBehaviour
     Vector3 lastPosition, currentPosition;
     const float maxStrength = 6.0f;
 
+    bool justStepped = false;
+    float footstepTimer = 1000.0f;
+    float timeBetweenFootsteps = 0.4f;
+
+
+
+    private void Update()
+    {
+        UpdateStepTimer();
+    }
+
+
+
+    void UpdateStepTimer()
+    {
+        if (justStepped)
+        {
+            footstepTimer += Time.deltaTime;
+            if (footstepTimer > timeBetweenFootsteps)
+            {
+                justStepped = false;
+            }
+        }
+    }
+
 
 
     private void FixedUpdate()
@@ -20,7 +45,12 @@ public class Footsteps : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        PlayerController.instance.Step(StepStrength(lastPosition, currentPosition), isRight, collision);
+        if (!justStepped)
+        {
+            PlayerController.instance.Step(StepStrength(lastPosition, currentPosition), isRight, collision);
+            footstepTimer = 0.0f;
+            justStepped = true;
+        }
 
         //print("collision!");
 
