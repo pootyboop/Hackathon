@@ -6,10 +6,10 @@ public class Footsteps : MonoBehaviour
 {
     public bool isRight = false;
     Vector3 lastPosition, currentPosition;
-    const float maxStrength = 6.0f;
+    const float maxStrength = 5.0f;
 
-    bool justStepped = false;
-    float footstepTimer = 1000.0f;
+    bool justStepped = true;
+    float footstepTimer = 0.0f;
     float timeBetweenFootsteps = 0.4f;
 
 

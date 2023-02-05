@@ -28,9 +28,6 @@ public class PlayerController : MonoBehaviour
     float weakStep = 0.3f;
     float normalStep = 0.6f;
 
-    //misc refs
-    public GameObject stageLights;
-
     //prefabs
     public ParticleSystem stepBurstWeak;
     public ParticleSystem stepBurstNormal;
@@ -70,23 +67,19 @@ public class PlayerController : MonoBehaviour
     public void Step(float velocity, bool isRight, Collision collision)
     {
         stepStrength strength = GetStepStrength(velocity);
+        //print(strength.ToString());
 
-        print(strength.ToString());
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            StepParticles(strength, isRight);
+        }
+
 
 
         //first step
         if (!firstStep && strength == stepStrength.STRONG)
         {
-            firstStep = true;
-            UpdateStandingHeight();
-
-            stageLights.SetActive(true);
-        }
-
-
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            StepParticles(strength, isRight);
+            StartCoroutine(FirstStep());
         }
     }
 
@@ -138,6 +131,21 @@ public class PlayerController : MonoBehaviour
         }
 
         Instantiate(prefab, position, Quaternion.Euler(-90, 0, 0));
+    }
+
+
+
+    IEnumerator FirstStep()
+    {
+        firstStep = true;
+        UpdateStandingHeight();
+
+        StageLights.instance.ToggleLights(true);
+
+        SpotlightMaker.instance.MakeSpotlight(0.0f, 0.0f);
+
+        yield return new WaitForSeconds(1);
+        Narrator.instance.ProgressStory();
     }
 
 
