@@ -18,6 +18,7 @@ public class Narrator : MonoBehaviour
     {
         instance = this;
         audioSource = GetComponent<AudioSource>();
+        ProgressStory();
     }
 
 
@@ -51,12 +52,12 @@ public class Narrator : MonoBehaviour
         switch (index)
         {
             //entered first spotlight
-            case 1:
+            case 2:
                 SpotlightMaker.instance.MakeSpotlight(3.5f, -.8f, false);
                 break;
 
             //stomped doormat
-            case 2:
+            case 3:
                 if (FindObjectOfType<TrashBall>() != null)
                 {
                     narratorHappiness--;

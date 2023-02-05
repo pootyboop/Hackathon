@@ -11,17 +11,17 @@ public class Shoe : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(gameObject + " overlapped " + other.gameObject);
-        if (/*other.gameObject.GetInstanceID() == footL.GetInstanceID() && */!isRight && !footL.hasShoe)
+        //print(gameObject + " overlapped " + other.gameObject);
+        if (/*other.gameObject.GetInstanceID() == footL.GetInstanceID() && !isRight && */!footL.hasShoe)
         {
-            print("left success");
+            //print("left success");
             footL.WearShoe();
             Destroy(gameObject);
         }
 
-        else if (/*GameObject.ReferenceEquals(other.gameObject, footR) && */isRight && !footR.hasShoe)
+        else if (/*GameObject.ReferenceEquals(other.gameObject, footR) && isRight && */!footR.hasShoe)
         {
-            print("right success");
+            //print("right success");
             footR.WearShoe();
             Destroy(gameObject);
         }
