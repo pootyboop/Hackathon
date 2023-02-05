@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Spotlight : MonoBehaviour
 {
-    public float lifetime = 6.0f;
+    public float lifetime = 0.1f;
     public bool autoDestroy = true;
+    public bool progressStoryOnEnter = true;
 
 
     void Start()
     {
         transform.position = new Vector3(transform.position.x, 6.0f, transform.position.z);
         transform.rotation = Quaternion.Euler(90, 0, 0);
+        GetComponent<AudioSource>().Play();
     }
 
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Foot"))
+        if (other.CompareTag("Foot") && progressStoryOnEnter)
         {
             Narrator.instance.ProgressStory();
 

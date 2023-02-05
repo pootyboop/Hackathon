@@ -15,10 +15,19 @@ public class SpotlightMaker : MonoBehaviour
         instance = this;
     }
 
-    
 
-    public void MakeSpotlight(float x, float z)
+
+    public Spotlight MakeSpotlight(float x, float z, bool progressStoryOnEnter)
     {
-        Instantiate(spotlightPrefab, new Vector3(x, 0.0f, z), Quaternion.Euler(0, 0, 0));
+        Spotlight spotlight = MakeSpotlight(x, z);
+        spotlight.progressStoryOnEnter = progressStoryOnEnter;
+        return spotlight;
+    }
+
+
+
+    public Spotlight MakeSpotlight(float x, float z)
+    {
+        return Instantiate(spotlightPrefab, new Vector3(x, 0.0f, z), Quaternion.Euler(0, 0, 0));
     }
 }

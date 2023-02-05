@@ -10,6 +10,8 @@ public class Narrator : MonoBehaviour
     int clipIndex = -1;
     AudioSource audioSource;
 
+    int narratorHappiness = 0;
+
 
 
     void Start()
@@ -50,7 +52,17 @@ public class Narrator : MonoBehaviour
         {
             //entered first spotlight
             case 1:
-                SpotlightMaker.instance.MakeSpotlight(6.0f, 1.0f);
+                SpotlightMaker.instance.MakeSpotlight(3.5f, -.8f, false);
+                break;
+
+            //stomped doormat
+            case 2:
+                if (FindObjectOfType<TrashBall>() != null)
+                {
+                    narratorHappiness--;
+                }
+
+                Manager.instance.OpenScene(1);
                 break;
         }
     }

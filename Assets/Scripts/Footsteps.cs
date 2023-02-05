@@ -5,11 +5,13 @@ using UnityEngine;
 public class Footsteps : MonoBehaviour
 {
     public bool isRight = false;
+    public bool hasShoe = false;
+    public GameObject shoe;
     Vector3 lastPosition, currentPosition;
     const float maxStrength = 5.0f;
 
     bool justStepped = true;
-    float footstepTimer = 0.0f;
+    float footstepTimer = -1.0f;
     float timeBetweenFootsteps = 0.4f;
 
 
@@ -69,5 +71,13 @@ public class Footsteps : MonoBehaviour
         float strength = Vector3.Distance(pos1, pos2) * 100.0f;
         
         return Mathf.Clamp(strength / maxStrength, 0.0f, 1.0f);
+    }
+
+
+
+    public void WearShoe()
+    {
+        hasShoe = true;
+        shoe.SetActive(true);
     }
 }

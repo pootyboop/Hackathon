@@ -81,6 +81,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(FirstStep());
         }
+
+        else if (Doormat.instance.steppedIn && strength == stepStrength.STRONG)
+        {
+            Narrator.instance.ProgressStory();
+        }
     }
 
 
