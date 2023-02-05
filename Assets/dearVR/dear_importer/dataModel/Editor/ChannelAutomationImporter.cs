@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
-using UnityEditor.Experimental.AssetImporters;
+
 using System.IO;
 using SpatialConnect.dearVRAnimations;
 using UnityEditor;
 
 namespace SpatialConnect
 {
-    [ScriptedImporter(1, "dear")]
-    public class ChannelAutomationImporter : ScriptedImporter
+    [UnityEditor.AssetImporters.ScriptedImporter(1, "dear")]
+    public class ChannelAutomationImporter : UnityEditor.AssetImporters.ScriptedImporter
     {
         private const string dearAnimationsPath = "Assets/dearVR/dearVR_Animations/";
         private const string dearPrefabsPath = "Assets/dearVR/dearVR_Prefabs/";
 
-        public override void OnImportAsset(AssetImportContext ctx)
+        public override void OnImportAsset(UnityEditor.AssetImporters.AssetImportContext ctx)
         {
             var animationData = JsonUtility.FromJson<SerializableList<PositionAutomation>>(File.ReadAllText(ctx.assetPath));
             var clip = AnimationClipConverter.ConvertToAnimationClip(animationData.List);

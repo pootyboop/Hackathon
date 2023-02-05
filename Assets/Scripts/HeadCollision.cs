@@ -8,7 +8,7 @@ public class HeadCollision : MonoBehaviour
     public Transform room, head;
     public Transform backupRespawn;
 
-    Vector3[] positions = new Vector3[10];
+    Vector3[] positions = new Vector3[60];
     int index = 0;
 
     void FixedUpdate()
@@ -16,7 +16,7 @@ public class HeadCollision : MonoBehaviour
         //lastPosition = position;
         //position = player.position;
 
-        positions[index] = new Vector3(head.position.x , 0.0f, head.position.z);
+        positions[index] = new Vector3(head.localPosition.x , 0.0f, head.localPosition.z);
         index++;
         if (index > positions.Length - 1)
         {
@@ -28,13 +28,16 @@ public class HeadCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (!collision.gameObject.CompareTag("Foot") && !collision.gameObject.CompareTag("Ground"))
         {
             print("head collision: " + collision.gameObject);
             // player.position = new Vector3(0,0,0);
             //Vector3 newOffset = LastPosition() - room.position;
             //room.position += newOffset;
-            room.position = backupRespawn.position;
+            //room.position = backupRespawn.position;
+
+            room.position = LastPosition();
         }
     }
 
